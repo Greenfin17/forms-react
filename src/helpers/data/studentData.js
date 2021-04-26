@@ -8,9 +8,23 @@ const addStudent = (studentObj) => new Promise((resolve, reject) => {
     .then((response) => {
       const body = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/students/${response.data.name}.json`, body)
-        .then(() => resolve(console.warn('Student added', studentObj)));
-    })
+        .then(() => {
+          getStudents().then((studentArray) => resolve(studentArray));
+        });    
     .catch((error) => reject(error));
 });
 
-export default addStudent;
+const getStudents = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/students.json`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+const deleteStudent = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/students/${firebaseKey}.json`)
+    .then(() => getStudents().then((studentArr) => resolve(studentArr)))
+    // or .then((resolve))
+    .catch((error) => reject(error));
+});
+
+export { addStudent, getStudents };
