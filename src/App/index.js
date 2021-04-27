@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import StudentForm from '../StudentForm';
+import StudentForm from '../components/StudentForm';
 import { getStudents } from '../helpers/data/studentData';
 import StudentCard from '../components/StudentCard';
 
@@ -23,6 +23,7 @@ function App() {
     <div className = "card-container">
     {students.map((studentInfo) => (
       <StudentCard
+        key={studentInfo.firebaseKey}
         firebaseKey={studentInfo.firebaseKey}
         name={studentInfo.name}
         teacher={studentInfo.teacher}
