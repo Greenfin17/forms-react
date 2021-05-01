@@ -6,6 +6,7 @@ function Students({ students, setStudents }) {
   return (
   <div className='App'>
     <hr />
+      <h2>Students</h2>
     <div className = "card-container">
     {students.map((studentInfo) => (
       <StudentCard

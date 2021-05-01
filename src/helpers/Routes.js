@@ -3,7 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Home from '../views/Home';
 import Students from '../views/Students';
+import SingleStudent from '../views/SingleStudent';
 import AddStudent from '../views/AddStudent';
+import NotFound from '../views/NotFound';
 
 export default function Routes({ students, setStudents, user }) {
   return (
@@ -16,11 +18,12 @@ export default function Routes({ students, setStudents, user }) {
           component={() => <Students students={students}
           setStudents={setStudents} /> }
         />
-        <Route path='/student/:id' component={() => <Home user={user} /> } />
+        <Route path='/student/:id' component={SingleStudent} />
         <Route
           path='/add-students'
           component={() => <AddStudent setStudents={setStudents} />}
         />
+        <Route path='*' component={NotFound} />
       </Switch>
     </div>
   );

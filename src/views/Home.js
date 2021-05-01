@@ -15,7 +15,7 @@ function Home({ user }) {
     <div>
       { user
         ? <h1>Hello {user.userName}</h1>
-        : <h1>Hello World</h1>
+        : <h1>Home Page</h1>
       }
     { student?.name}
     </div>

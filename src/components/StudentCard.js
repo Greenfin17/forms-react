@@ -19,7 +19,6 @@ const StudentCard = ({
   setStudents
 }) => {
   const [editing, setEditing] = useState(false);
-
   const history = useHistory();
 
   function viewStudent() {
@@ -35,6 +34,9 @@ const StudentCard = ({
       case 'edit':
         console.warn('You want to edit');
         setEditing((prevState) => !prevState);
+        break;
+      case 'view':
+        history.push(`/student/${firebaseKey}`);
         break;
       default:
         console.warn('nothing selected');
