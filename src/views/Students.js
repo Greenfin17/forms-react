@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App/App.scss';
 import PropTypes from 'prop-types';
 import StudentCard from '../components/StudentCard';
 

@@ -1,5 +1,6 @@
 // StudentCard.js
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -18,6 +19,13 @@ const StudentCard = ({
   setStudents
 }) => {
   const [editing, setEditing] = useState(false);
+
+  const history = useHistory();
+
+  function viewStudent() {
+    history.push(`/student/${firebaseKey}`);
+  }
+
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
@@ -38,6 +46,7 @@ const StudentCard = ({
     <CardTitle tag='h5'>{name}</CardTitle>
     <CardText>{teacher}</CardText>
     <CardText>{grade}</CardText>
+    <Button color="warning" onClick={viewStudent}>View Student</Button>
     <Button color="danger" onClick={() => handleClick('delete')}>Delete Student</Button>
     <Button color="info" onClick={() => handleClick('edit')}>
       {editing ? 'Close Form' : 'Edit Student'}
