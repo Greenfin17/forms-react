@@ -5,7 +5,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   Button
@@ -17,19 +16,25 @@ const NavBar = ({ user }) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const authenticated = () => (
+    <>
+      <NavItem>
+        <Link className="nav-link" to="/add-students/">Add Students</Link>
+      </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/students">Student Cards</Link>
+      </NavItem>
+    </>
+  );
+
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">React</NavbarBrand>
+        <Link to="/">React</Link>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <Link className="nav-link" to="/add-students/">Add Students</Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/students">Student Cards</Link>
-            </NavItem>
+            { user && authenticated() }
             {
               user !== null
               && <NavItem>

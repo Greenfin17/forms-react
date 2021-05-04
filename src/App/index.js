@@ -22,7 +22,7 @@ function App() {
           fullName: authed.displayName,
           profileImage: authed.photoURL,
           uid: authed.uid,
-          username: authed.email.split('@gmail.com')[0]
+          username: authed.email.split('@')[0]
         };
         setUser(userInfoObj);
       } else if (user || user === null) {
